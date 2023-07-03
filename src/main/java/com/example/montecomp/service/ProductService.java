@@ -4,6 +4,7 @@ import com.example.montecomp.model.Product;
 
 import java.util.List;
 
+//Cette classe n'est qu'une interface, l'implementation se fait dans ProductServiceImpl
 public interface ProductService {
     Product newProduct(Product product);
     List<Product> getAll();

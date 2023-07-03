@@ -8,11 +8,15 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+//On annote pour que Spring reconnaisse le service et le traite comme tel
 @Service
+//Cette annotation lombok permet de générer un constructeur sans avoir à le coder, à la manière des Getter et Setter
 @RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
+    //On initialise le repository correspondant
     private final ProductRepository repository;
 
+    //Ici je vais commenter plus light, les noms de méthodes sont assez transparents
     //CREATE
     public Product newProduct(Product product) {
         return repository.save(product);
@@ -31,6 +35,7 @@ public class ProductServiceImpl implements ProductService {
 
     //UPDATE
     public Product updateName(Long id, String name) {
+        //On utilise un try dans les update pour éviter un plantage de l'app si repository.findById() retourne une valeur nulle, mais ce n'est pas nécessaire dans l'absolu
         try {
             Product product = repository.findById(id).get();
             product.setName(name);
